@@ -22,11 +22,13 @@ FramePerSec = pygame.time.Clock()
 clock = pygame.time.Clock()
 displaysurface = pygame.display.set_mode((720, 720))
 pygame.display.set_caption("Game")
+#pygame.mixer.music.load("music.mp3")
+#pygame.mixer.music.play()
 
 def scrollY(screenSurf, offsetY):
     WIDTH, HEIGHT = screenSurf.get_size()
     copySurf = screenSurf.copy()
-    screenSurf.blit(copySurf, (0, offsetY))
+    screenSurf.blit(copySurf, (10, offsetY))
 
 # GENERATING THE PLAYER
 playerSprite = pygame.image.load("playerSprite.png")
@@ -66,11 +68,11 @@ class Player(pygame.sprite.Sprite):
         hits = pygame.sprite.spritecollide(self, platforms, False)
         if hits:
             self.vel.y = -15
-            scrollY(displaysurface, -50)
+            #scrollY(displaysurface, -50)
             #pygame.display.update()
-            for entity in all_sprites:
-                displaysurface.blit(entity.image, entity.rect)
-                entity.pos += vec(0, -100)
+            #for entity in all_sprites:
+                #displaysurface.blit(entity.image, entity.rect)
+                #entity.pos += vec(0, -100)
 
 
 # CHECKS FOR COLLISION UPDATES
@@ -144,6 +146,16 @@ while True:
     if P1.pos[1] > 720:
         deathtext = myfont2.render('YOU DIED', True, (255, 100, 100))
         displaysurface.blit(deathtext, (200, 300))
+
+    if pressed_keys[K_e]:
+        FPS = 10
+        #scrollY(displaysurface, -50)
+        #pygame.display.update()
+        freeze = myfont.render('SlowMo', True, (255, 100, 100))
+        displaysurface.blit(freeze, (610, 60))
+    else:
+        FPS = 240
+
 
     for entity in all_sprites:
         displaysurface.blit(entity.image, entity.rect)
