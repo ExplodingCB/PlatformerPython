@@ -17,3 +17,7 @@ If it wasn't clear already I did not make these assets, I just found them on the
 Github Repo:
 --------------------------
 https://github.com/ExplodingCB/PlatformerPython
+
+Download Me!:
+--------------------------
+https://github.com/ExplodingCB/PlatformerPython/archive/refs/heads/main.zip
