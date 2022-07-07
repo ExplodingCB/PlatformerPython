@@ -110,7 +110,7 @@ class object(pygame.sprite.Sprite):
 
 randomX = random.randint(200, 420)
 randomY = random.randint(220, 300)
-randomX2 = random.randint(100, 220)
+randomX2 = random.randint(100, 720)
 randomY2 = random.randint(0, 0)
 #  (left | right , up | down)
 PT1 = platform(360, 560)
@@ -134,6 +134,7 @@ platforms.add(PT3)
 myfont = pygame.font.SysFont(None, 30)
 myfont2 = pygame.font.SysFont(None, 100)
 while True:
+    pressed_keys = pygame.key.get_pressed()
     displaysurface.fill((0, 0, 0))
     P1.update()
     if abs(P1.pos[0] - C1.pos[0]) < 75 and abs(P1.pos[1] - C1.pos[1]) < 75:
@@ -142,7 +143,7 @@ while True:
     print(P1.pos[0], P1.pos[1])
     if P1.pos[1] > 720:
         deathtext = myfont2.render('YOU DIED', True, (255, 100, 100))
-        displaysurface.blit(deathtext, (200, 360))
+        displaysurface.blit(deathtext, (200, 300))
 
     for entity in all_sprites:
         displaysurface.blit(entity.image, entity.rect)
@@ -160,7 +161,8 @@ while True:
     mytext2 = myfont.render('X: ' + str(P1.pos[0] // 1), True, (255, 100, 100))
     mytext3 = myfont.render('Y: ' + str(P1.pos[1] // 1), True, (255, 100, 100))
     displaysurface.blit(mytext, (610, 1))
-    displaysurface.blit(mytext2, (610, 20))
-    displaysurface.blit(mytext3, (610, 40))
+    if pressed_keys[K_q]:
+        displaysurface.blit(mytext2, (610, 20))
+        displaysurface.blit(mytext3, (610, 40))
     pygame.display.update()
     FramePerSec.tick(FPS)
