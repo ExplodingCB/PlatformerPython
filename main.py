@@ -57,8 +57,8 @@ class Player(pygame.sprite.Sprite):
     def __init__(self, x, y):
         super().__init__()
         # self.image = pygame.image.load("character.png")
-        Player.x = x
-        Player.y = y
+        #self.x = x
+        #self.y = y
         self.image = playerSprite
         self.rect = self.image.get_rect()
         self.pos = vec((360, 560))
@@ -96,7 +96,7 @@ class Player(pygame.sprite.Sprite):
             pygame.display.update()
             for entity in all_sprites:
                 displaysurface.blit(entity.image, entity.rect)
-                entity.pos.y += -50
+                entity.pos += vec(0, -50)
 
 
 # CHECKS FOR COLLISION UPDATES
@@ -112,6 +112,7 @@ platformSprite = pygame.image.load("platformSprite2.png")
 class platform(pygame.sprite.Sprite):
     def __init__(self, x, y):
         super().__init__()
+        self.pos = vec(x, y)
         self.image = platformSprite
         self.rect = self.image.get_rect()
         self.rect = self.image.get_rect(center=(x, y))
@@ -124,8 +125,7 @@ coin = pygame.image.load("coin.png")
 class object(pygame.sprite.Sprite):
     def __init__(self, x, y):
         super().__init__()
-        self.x = x
-        self.y = y
+        self.pos = vec(x, y)
         self.image = coin
         self.rect = self.image.get_rect()
         self.rect = self.image.get_rect(center=(x, y))
@@ -175,7 +175,7 @@ while True:
 
     displaysurface.fill((0, 0, 0))
     P1.update()
-    if abs(P1.pos[0] - C1.x) < 75 and abs(P1.pos[1] - C1.y) < 75:
+    if abs(P1.pos[0] - C1.pos[0]) < 75 and abs(P1.pos[1] - C1.pos[1]) < 75:
         Score += 1
         print(Score)
     #print(P1.pos[0], P1.pos[1])
